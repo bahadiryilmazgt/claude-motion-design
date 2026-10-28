@@ -10,3 +10,4 @@ examples/*/probe/
 examples/*/out/
 __pycache__/
 .DS_Store
+examples/*/subdraft/
