@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><title>CPL Reel</title>
+<style>
+@font-face{font-family:Tight;src:url(fonts/tight-ext.woff2) format('woff2');font-weight:100 900;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Tight;src:url(fonts/tight.woff2) format('woff2');font-weight:100 900;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Serif;src:url(fonts/serif-ext.woff2) format('woff2');font-style:normal;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Serif;src:url(fonts/serif.woff2) format('woff2');font-style:normal;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Serif;src:url(fonts/serif-i-ext.woff2) format('woff2');font-style:italic;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Serif;src:url(fonts/serif-i.woff2) format('woff2');font-style:italic;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--navy0:#040815;--navy1:#081127;--navy2:#0e1a3a;--gold:#d8b36d;--goldhi:#f4dba2;--golddim:rgba(216,179,109,.55);--cream:#f4ecdc;--creamdim:rgba(244,236,220,.62);--neg:#d9705f;--sh:0%}
+html,body{margin:0;background:#000;overflow:hidden}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--navy0);font-family:Tight,sans-serif;color:var(--cream);letter-spacing:-.02em}
+.a{position:absolute;left:0;top:0}
+.L{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.m{position:absolute;overflow:hidden;left:0;width:1080px;text-align:center}
+.m>span{display:inline-block;white-space:nowrap}
+.w{display:inline-block;will-change:transform}
+.gold,.g .w{background:linear-gradient(100deg,#a97b37 0%,#e3bf78 28%,#fff0c9 45%,#e8c682 58%,#b58740 100%);background-size:260% 100%;background-position:var(--sh) 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+.ser{font-family:Serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.caps{font:600 28px Tight;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.card{position:absolute;border-radius:36px;background:linear-gradient(160deg,rgba(26,40,82,.92),rgba(10,18,42,.94));box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,236,190,.10),0 0 0 1px rgba(216,179,109,.16)}
+.beam{position:absolute;inset:0;border-radius:inherit;padding:2px;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.pill{position:absolute;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:999px}
+.num{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+svg{overflow:visible}
+</style></head><body>
+<div id="stage">
+  <!-- background -->
+  <div class="a" style="width:1080px;height:1920px;background:radial-gradient(ellipse 120% 80% at 50% 35%,#0c1838 0%,#060c1f 55%,#03060f 100%)"></div>
+  <div id="glowA" class="a" style="width:1400px;height:1400px;border-radius:50%;background:radial-gradient(circle,rgba(216,179,109,.20) 0%,rgba(216,179,109,.06) 35%,transparent 65%)"></div>
+  <div id="glowB" class="a" style="width:1500px;height:1500px;border-radius:50%;background:radial-gradient(circle,rgba(56,92,190,.22) 0%,rgba(40,70,160,.07) 40%,transparent 68%)"></div>
+  <div id="gridWrap" class="a" style="width:1080px;height:1920px;perspective:900px;overflow:hidden">
+    <div id="grid" class="a" style="left:-900px;top:1180px;width:2880px;height:1600px;transform-origin:50% 0;transform:rotateX(68deg);background-image:linear-gradient(rgba(216,179,109,.22) 2px,transparent 2px),linear-gradient(90deg,rgba(216,179,109,.22) 2px,transparent 2px);background-size:120px 120px;-webkit-mask-image:linear-gradient(#000 0%,rgba(0,0,0,.6) 30%,transparent 75%);mask-image:linear-gradient(transparent 0%,#000 25%,transparent 85%)"></div>
+  </div>
+  <canvas id="dust" class="a" width="1080" height="1920"></canvas>
+  <!-- camera -->
+  <div id="cam" class="L" style="transform-origin:540px 900px">
+    <!-- ===== S1 hook ===== -->
+    <div id="s1" class="L">
+      <div id="h1a" class="m" style="top:300px;height:150px;line-height:150px"><span style="font:800 112px Tight;letter-spacing:-.045em"><span class="g">Düşük CPL</span> =</span></div>
+      <div id="h1b" class="m" style="top:440px;height:170px;line-height:160px"><span class="ser" style="font-size:116px">Başarılı Reklam mı?</span></div>
+      <div id="cplCard" class="card" style="left:130px;top:720px;width:820px;height:560px">
+        <div id="cplBeam" class="beam"></div>
+        <div class="caps" style="position:absolute;left:56px;top:52px;font-size:26px">CPL · Lead başı maliyet</div>
+        <div id="cplVal" class="num" style="position:absolute;left:48px;top:96px;font-size:250px;line-height:290px;color:var(--cream)">€25</div>
+        <div id="cplChip" class="pill" style="left:540px;top:178px;width:226px;height:92px;background:linear-gradient(135deg,#f4dba2,#c99a4f);color:#0a1228;font:800 46px Tight;gap:10px;box-shadow:0 0 50px rgba(216,179,109,.55)">
+          <svg width="34" height="34" viewBox="0 0 34 34"><path d="M17 4 V28 M6 18 L17 29 L28 18" fill="none" stroke="#0a1228" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>%60</div>
+        <svg id="spark" width="820" height="200" style="position:absolute;left:0;top:350px">
+          <defs><linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b36d" stop-opacity=".32"/><stop offset="1" stop-color="#d8b36d" stop-opacity="0"/></linearGradient>
+          <filter id="glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <path id="sparkArea" fill="url(#sparkFill)"/>
+          <path id="sparkLine" fill="none" stroke="#e7c27f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+          <circle id="sparkDot" r="12" fill="#fff3d4" filter="url(#glow)"/>
+        </svg>
+      </div>
+      <div id="notDim" class="a" style="width:1080px;height:1920px;background:radial-gradient(ellipse 80% 45% at 50% 50%,rgba(3,6,15,.82),rgba(3,6,15,.35))"></div>
+      <div id="slash" class="a" style="left:-300px;top:930px;width:1680px;height:6px;background:linear-gradient(90deg,transparent,#fff1cf 45%,#fff 50%,#fff1cf 55%,transparent);box-shadow:0 0 40px 10px rgba(244,219,162,.55);transform-origin:50% 50%"></div>
+      <div id="not1" class="m" style="top:760px;height:170px;line-height:170px"><span style="font:800 138px Tight;letter-spacing:-.05em">Her zaman</span></div>
+      <div id="not2" class="m" style="top:900px;height:320px;line-height:250px"><span class="ser g" style="font-size:250px">değil.</span></div>
+    </div>
+
+    <!-- ===== S2/S3 funnels ===== -->
+    <div id="fA" class="a" style="width:1080px;height:1100px;transform-origin:0 0"></div>
+    <div id="fB" class="a" style="width:1080px;height:1100px;transform-origin:0 0"></div>
+    <div id="hA0" class="m" style="top:270px;height:130px;line-height:128px"><span class="ser" style="font-size:96px">Lead başı <span class="g">sadece €10</span></span></div>
+    <div id="hA1" class="m" style="top:270px;height:130px;line-height:128px"><span class="ser" style="font-size:96px">Harika, <span class="g">değil mi?</span></span></div>
+    <div id="hA2" class="m" style="top:270px;height:130px;line-height:128px"><span class="ser" style="font-size:96px">Ama sonuç…</span></div>
+    <div id="hA3" class="m" style="top:270px;height:130px;line-height:128px"><span class="ser" style="font-size:104px">Sadece <span style="color:var(--neg)">2 satış.</span></span></div>
+    <div id="hB1" class="m" style="top:250px;height:130px;line-height:128px"><span class="ser" style="font-size:96px">Daha pahalı lead…</span></div>
+    <div id="hB2" class="m" style="top:250px;height:130px;line-height:128px"><span class="ser" style="font-size:96px">…ama tam <span class="g">8 satış!</span></span></div>
+    <div id="sBars" class="L">
+      <div class="caps" style="position:absolute;left:100px;top:1150px;font-size:26px">Satış</div>
+      <div class="caps" style="position:absolute;right:100px;top:1150px;font-size:22px;color:var(--creamdim);letter-spacing:.12em">0 — 8</div>
+            <div style="position:absolute;left:100px;top:1214px;font:800 40px Tight;color:var(--creamdim)">A</div>
+      <div style="position:absolute;left:160px;top:1212px;width:820px;height:48px;border-radius:24px;background:rgba(244,236,220,.07)"><div id="sbA" style="width:25%;height:100%;border-radius:24px;background:linear-gradient(90deg,#8e4337,#d9705f);transform-origin:0 50%"></div></div>
+      <div id="sbAv" class="num" style="position:absolute;left:0;top:1206px;font-size:52px;line-height:60px;color:var(--neg)">2</div>
+      <div style="position:absolute;left:100px;top:1310px;font:800 40px Tight;color:var(--gold)">B</div>
+      <div style="position:absolute;left:160px;top:1308px;width:820px;height:48px;border-radius:24px;background:rgba(244,236,220,.07)"><div id="sbB" style="width:100%;height:100%;border-radius:24px;background:linear-gradient(90deg,#b58740,#f4dba2);box-shadow:0 0 30px rgba(244,219,162,.5);transform-origin:0 50%"></div></div>
+      <div id="sbBv" class="num" style="position:absolute;left:0;top:1302px;font-size:52px;line-height:60px;color:#0a1228">0</div>
+    </div>
+    <div id="vsMark" class="a caps" style="left:0;width:1080px;top:470px;text-align:center;font-size:40px;color:var(--creamdim);letter-spacing:.1em">vs</div>
+
+    <!-- ===== comparison ===== -->
+    <div id="cmp" class="L">
+      <div id="cmpT1" class="m" style="top:250px;height:60px;line-height:60px"><span class="caps">Karşılaştırma</span></div>
+      <div id="cmpT2" class="m" style="top:318px;height:130px;line-height:128px"><span class="ser" style="font-size:100px">Hangisi daha <span class="g">başarılı?</span></span></div>
+      <div id="rowA" class="card" style="left:70px;top:520px;width:940px;height:270px">
+        <div class="pill" style="left:44px;top:44px;width:74px;height:74px;border:2px solid rgba(244,236,220,.3);font:800 38px Tight;color:var(--creamdim)">A</div>
+        <div class="num" style="position:absolute;left:144px;top:40px;font-size:72px;line-height:82px;color:var(--creamdim)">€10 <span style="font-size:40px;font-weight:600;letter-spacing:0">CPL</span></div>
+        <svg width="90" height="40" style="position:absolute;left:418px;top:62px"><path d="M4 20 H80 M62 6 L80 20 L62 34" fill="none" stroke="rgba(244,236,220,.45)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="rowAS" class="num" style="position:absolute;left:530px;top:22px;font-size:110px;line-height:120px;color:var(--neg)">2 <span style="font-size:44px;font-weight:600;letter-spacing:0">Satış</span></div>
+        <div style="position:absolute;left:44px;top:184px;width:852px;height:30px;border-radius:15px;background:rgba(244,236,220,.08)"><div id="barA" style="width:25%;height:100%;border-radius:15px;background:linear-gradient(90deg,#8e4337,#d9705f);transform-origin:0 50%"></div></div>
+      </div>
+      <div id="rowB" class="card" style="left:70px;top:830px;width:940px;height:300px;background:linear-gradient(160deg,rgba(48,58,96,.95),rgba(16,24,52,.96))">
+        <div id="rowBBeam" class="beam"></div>
+        <div class="pill" style="left:44px;top:50px;width:74px;height:74px;background:linear-gradient(135deg,#f4dba2,#c99a4f);font:800 38px Tight;color:#0a1228">B</div>
+        <div class="num" style="position:absolute;left:144px;top:46px;font-size:72px;line-height:82px;color:var(--cream)">€18 <span style="font-size:40px;font-weight:600;letter-spacing:0">CPL</span></div>
+        <svg width="90" height="40" style="position:absolute;left:418px;top:68px"><path d="M4 20 H80 M62 6 L80 20 L62 34" fill="none" stroke="#e3bf78" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="rowBS" class="num g" style="position:absolute;left:530px;top:16px;font-size:136px;line-height:146px;text-shadow:none"><span class="gold">8</span> <span class="gold" style="font-size:48px;font-weight:600;letter-spacing:0">Satış</span></div>
+        <div style="position:absolute;left:44px;top:206px;width:852px;height:36px;border-radius:18px;background:rgba(244,236,220,.08)"><div id="barB" style="width:100%;height:100%;border-radius:18px;background:linear-gradient(90deg,#b58740,#f4dba2);box-shadow:0 0 30px rgba(244,219,162,.6);transform-origin:0 50%"></div></div>
+      </div>
+      <div id="x4" class="pill" style="left:846px;top:770px;width:206px;height:206px;background:radial-gradient(circle at 35% 30%,#fff4d6,#e3bf78 45%,#a97b37);color:#0a1228;flex-direction:column;box-shadow:0 0 90px rgba(244,219,162,.65),0 20px 50px rgba(0,0,0,.5)">
+        <div class="num" style="font-size:100px;line-height:92px">4×</div><div style="font:700 24px Tight;letter-spacing:.06em">SATIŞ</div></div>
+      <div id="cacCard" class="card" style="left:70px;top:1170px;width:940px;height:330px">
+        <div class="caps" style="position:absolute;left:50px;top:44px;font-size:26px">Satış başı maliyet</div>
+        <div style="position:absolute;left:50px;top:110px;font:600 32px Tight;color:var(--creamdim)">Kampanya A</div>
+        <div id="cacA" class="num" style="position:absolute;left:46px;top:150px;font-size:118px;line-height:130px;color:var(--neg)">€500</div>
+        <div style="position:absolute;left:500px;top:110px;font:600 32px Tight;color:var(--creamdim)">Kampanya B</div>
+        <div id="cacB" class="num g" style="position:absolute;left:496px;top:150px;font-size:118px;line-height:130px"><span class="gold">€135</span></div>
+        <div style="position:absolute;left:470px;top:110px;width:2px;height:180px;background:rgba(244,236,220,.12)"></div>
+      </div>
+    </div>
+
+    <!-- ===== S4 metrics ===== -->
+    <div id="s4" class="L">
+      <div id="m4cap" class="m" style="top:250px;height:60px;line-height:60px"><span class="caps">Gerçek performans</span></div>
+      <div id="m4h1" class="m" style="top:318px;height:130px;line-height:128px"><span class="ser" style="font-size:104px">Bütün tabloya bak.</span></div>
+      <div id="m4h2" class="m" style="top:318px;height:130px;line-height:128px"><span class="ser" style="font-size:86px">CPL sadece <span class="g">başlangıçtır.</span></span></div>
+      <svg id="rail" width="1080" height="1920" class="a"><defs><linearGradient id="railG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4dba2"/><stop offset="1" stop-color="#a97b37"/></linearGradient></defs>
+        <path id="railBase" d="M134 610 V1482" stroke="rgba(216,179,109,.25)" stroke-width="4" fill="none"/>
+        <path id="railFill" d="M134 610 V1482" stroke="url(#railG)" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+        <circle id="railPulse" cx="134" r="14" fill="#fff3d4" filter="url(#glow)"/>
+      </svg>
+      <div id="mcards"></div>
+      <div id="flagS" class="pill caps" style="left:740px;top:506px;width:240px;height:56px;font-size:22px;letter-spacing:.2em;color:#0a1228;background:linear-gradient(135deg,#f4dba2,#c99a4f);box-shadow:0 0 30px rgba(216,179,109,.5)">Başlangıç</div>
+      <div id="flagE" class="pill caps" style="left:780px;top:1378px;width:200px;height:56px;font-size:22px;letter-spacing:.2em;color:var(--gold);border:2px solid var(--gold);background:rgba(8,17,39,.9)">Sonuç</div>
+    </div>
+
+    <!-- ===== question ===== -->
+    <div id="sq" class="L">
+      <div id="qcap" class="m" style="top:520px;height:60px;line-height:60px"><span class="caps" style="font-size:34px">Asıl soru:</span></div>
+      <div id="q1" class="m" style="top:610px;height:150px;line-height:150px"><span class="ser" style="font-size:132px">Bu lead’ler</span></div>
+      <div id="q2" class="m" style="top:750px;height:170px;line-height:165px"><span class="ser g" style="font-size:150px">satışa</span></div>
+      <div id="q3" class="m" style="top:905px;height:150px;line-height:150px"><span class="ser" style="font-size:132px">dönüşüyor mu?</span></div>
+      <div id="convL" class="pill" style="left:120px;top:1200px;width:240px;height:110px;border:2px solid rgba(244,236,220,.3);background:rgba(14,26,58,.9);font:700 44px Tight;color:var(--cream)">Lead</div>
+      <div id="convR" class="pill" style="left:720px;top:1200px;width:240px;height:110px;background:linear-gradient(135deg,#f4dba2,#c99a4f);font:800 44px Tight;color:#0a1228;box-shadow:0 0 60px rgba(216,179,109,.5)">Satış</div>
+      <canvas id="convC" class="a" width="1080" height="400" style="top:1055px"></canvas>
+    </div>
+
+    <!-- ===== final ===== -->
+    <div id="sf" class="L">
+      <div id="fLine" class="a" style="left:140px;top:1250px;width:800px;height:3px;background:linear-gradient(90deg,transparent,#e3bf78,transparent);transform-origin:50% 50%"></div>
+      <div id="f1" class="m" style="top:660px;height:120px;line-height:120px"><span style="font:700 92px Tight;letter-spacing:-.04em">Reklam performansını</span></div>
+      <div id="f2" class="m" style="top:780px;height:120px;line-height:120px"><span style="font:700 92px Tight;letter-spacing:-.04em"><span id="f2lead" style="position:relative;color:var(--creamdim)">lead ile<span id="strike" style="position:absolute;left:-8px;right:-8px;top:54%;height:8px;border-radius:4px;background:linear-gradient(90deg,#c99a4f,#f4dba2);box-shadow:0 0 18px rgba(244,219,162,.7);transform-origin:0 50%"></span></span> değil,</span></div>
+      <div id="f3" class="m" style="top:905px;height:260px;line-height:230px"><span class="ser g" style="font-size:186px">sonuçla ölç.</span></div>
+      <div id="fTag" class="m" style="top:1290px;height:60px;line-height:60px"><span class="caps" style="font-size:24px;color:var(--golddim)">CPL · Lead kalitesi · Satış · ROAS</span></div>
+    </div>
+  </div>
+  <canvas id="fx" class="a" width="1080" height="1920"></canvas>
+  <div id="note" class="a" style="top:1640px;width:1080px;text-align:center;font:500 24px Tight;letter-spacing:.14em;color:rgba(244,236,220,.38);text-transform:uppercase">Örnek veri</div>
+  <div id="grain" class="a" style="width:1080px;height:1920px;opacity:.07;mix-blend-mode:overlay"></div>
+  <div class="a" style="width:1080px;height:1920px;background:radial-gradient(ellipse 85% 70% at 50% 48%,transparent 55%,rgba(0,0,0,.6) 100%)"></div>
+  <div id="flash" class="a" style="width:1080px;height:1920px;background:radial-gradient(circle at 50% 50%,rgba(255,240,205,.9),rgba(255,240,205,0) 70%);opacity:0"></div>
+</div>
+<script>
+// ---------- helpers ----------
+const W = 1080, H = 1920, T_END = 30;
+const clamp = (x, a = 0, b = 1) => x < a ? a : x > b ? b : x, lerp = (a, b, u) => a + (b - a) * u;
+const E = { io: u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2, out: u => 1 - Math.pow(1 - u, 3), in: u => u * u * u, o5: u => 1 - Math.pow(1 - u, 5),
+  expo: u => u >= 1 ? 1 : 1 - Math.pow(2, -10 * u) };
+const P = (t, t0, d, e = E.io) => e(clamp((t - t0) / d));
+function step(tau, f = 2.6, z = .7) { if (tau <= 0) return 0; const w = 2 * Math.PI * f, wd = w * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w * tau) * (Math.cos(wd * tau) + z * w / wd * Math.sin(wd * tau)); }
+const sp = (t, t0, f = 2.4, z = .75) => step(t - t0, f, z);
+const $ = id => document.getElementById(id), px = v => v + 'px';
+const vis = (el, on) => { el.style.visibility = on ? 'inherit' : 'hidden'; };
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function tf(el, { x = 0, y = 0, s = 1, sx, sy, r = 0, o = 1, b = 0 } = {}) {
+  const st = el.style; st.transform = `translate(${x}px,${y}px) scale(${sx ?? s},${sy ?? s}) rotate(${r}deg)`; st.opacity = o;
+  st.filter = b > 0.05 ? `blur(${b}px)` : 'none'; vis(el, o > 0.002);
+}
+function wordify(root) {
+  const walk = (node, gold) => { [...node.childNodes].forEach((c) => {
+    if (c.nodeType === 3) { const frag = document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach((w) => {
+      if (!w) return; if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+      const s = document.createElement('span'); s.className = 'w' + (gold ? ' gold' : ''); s.textContent = w; frag.appendChild(s); }); c.replaceWith(frag); }
+    else if (c.nodeType === 1 && !c.id) walk(c, gold || c.classList.contains('g'));
+    else if (c.nodeType === 1) { c.classList.add('w'); } }); };
+  walk(root, root.classList.contains('g')); return root;
+}
+// masked word rise: words come up from below their line, leave upward
+function rise(el, t, tin, tout, stag = .06, f = 2.3) {
+  const ws = el._ws || (el._ws = [...el.querySelectorAll('.w')]);
+  ws.forEach((w, i) => {
+    const u = clamp(step(t - tin - i * stag, f, .74), 0, 1.04), o = tout == null ? 0 : P(t, tout + i * .035, .32, E.in);
+    w.style.transform = `translateY(${(1 - u) * 115 - o * 115}%) rotate(${(1 - clamp(u)) * 5}deg)`;
+  });
+  vis(el, t >= tin - .05 && (tout == null || t < tout + .32 + ws.length * .035));
+}
+const fmt = n => '€' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const count = (t, t0, d, a, b, e = E.out) => Math.round(lerp(a, b, e(clamp((t - t0) / d))));
+
+// ---------- timeline (word timings from assets/vo/cues.json, VO offsets 0.12 / 4.0 / 11.3 / 17.75 / 26.85) ----------
+const K = {
+  cnt0: .55, cntD: 1.7, chip: 2.3, not: 2.86, out1: 3.68,
+  aIn: 3.72, aChip: 4.09, aCpl: 5.2, aLead: 5.62, aGreat: 7.14, aQual: 7.62, aBut: 9.05, aSale: 10.23, aCac: 10.55,
+  bMove: 11.0, bChip: 11.39, bCpl: 12.53, bLead: 13.6, bQual: 14.3, bSale: 15.49, bCac: 15.95,
+  cmp: 16.35, why: 17.84, m: [18.12, 18.91, 19.71, 20.37, 21.0], start: 22.05, q: 24.38, qLead: 25.14, qSat: 25.69, qDon: 26.0,
+  fin: 26.75, f1: 26.94, f2: 28.06, strike: 28.46, f3: 28.85, fBoom: 29.3 };
+const BEAT = 60 / 130, DROP = 2.89;   // Cat Walk 130 BPM, drop placed on "Her zaman değil"
+
+// ---------- funnels ----------
+const TIERS = [{ y: 170, h: 250, wt: 920, wb: 730 }, { y: 450, h: 220, wt: 700, wb: 520 }, { y: 700, h: 200, wt: 490, wb: 300 }];
+function trap(c, ti, inset = 0) { const x0 = 540 - ti.wt / 2 + inset, x1 = 540 + ti.wt / 2 - inset, x2 = 540 + ti.wb / 2 - inset, x3 = 540 - ti.wb / 2 + inset;
+  return `M${x0} ${ti.y + inset} L${x1} ${ti.y + inset} L${x2} ${ti.y + ti.h - inset} L${x3} ${ti.y + ti.h - inset} Z`; }
+function buildFunnel(root, d) {
+  root.innerHTML = `
+  <div class="pill caps fchip" style="left:${540 - 170}px;top:40px;width:340px;height:76px;font-size:30px;${d.hero ? 'color:#0a1228;background:linear-gradient(135deg,#f4dba2,#c99a4f);box-shadow:0 0 40px rgba(216,179,109,.45)' : 'color:var(--gold);border:2px solid rgba(216,179,109,.6);background:rgba(8,17,39,.85)'}">Kampanya ${d.name}</div>
+  <svg width="1080" height="1000" class="a"><defs>
+    <linearGradient id="tf${d.name}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a58"/><stop offset="1" stop-color="#0c1530"/></linearGradient>
+    <linearGradient id="ts${d.name}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a97b37"/><stop offset=".5" stop-color="#f4dba2"/><stop offset="1" stop-color="#a97b37"/></linearGradient></defs>
+    ${TIERS.map((ti, i) => `<path class="tghost" d="${trap(0, ti, 2)}" fill="rgba(14,26,58,.35)" stroke="#d8b36d" stroke-width="2.5" stroke-dasharray="12 12" opacity="0"/>
+      <g class="tier"><path d="${trap(0, ti)}" fill="url(#tf${d.name})" stroke="url(#ts${d.name})" stroke-width="3" stroke-linejoin="round" opacity=".98"/>
+      <path class="tglow" d="${trap(0, ti, 6)}" fill="none" stroke="#f4dba2" stroke-width="2" stroke-linejoin="round" opacity="0"/></g>`).join('')}
+  </svg>
+  <canvas class="a pc" width="1080" height="1000"></canvas>
+  ${TIERS.map((ti, i) => `<div class="a tnum" style="top:${ti.y + ti.h / 2 - (i ? 78 : 92)}px;width:1080px;text-align:center">
+     <div class="num v" style="font-size:${i ? 112 : 136}px;line-height:${i ? 112 : 136}px">0</div>
+     <div style="font:600 ${i ? 36 : 40}px Tight;color:var(--creamdim);letter-spacing:0;margin-top:4px">${['Lead', 'Nitelikli Lead', 'Satış'][i]}</div></div>`).join('')}
+  <div class="pill cplb" style="left:${d.hero ? 760 : 760}px;top:120px;width:250px;height:96px;font:800 48px Tight;color:#0a1228;background:linear-gradient(135deg,#fff0c9,#d8ad5f);box-shadow:0 0 60px rgba(244,219,162,.55),0 12px 30px rgba(0,0,0,.4)">€${d.cpl} <span style="font-size:28px;margin-left:8px;font-weight:700">CPL</span></div>
+  <div class="pill tag" style="left:70px;top:140px;width:260px;height:62px;font:700 26px Tight;color:var(--gold);border:2px solid rgba(216,179,109,.55);background:rgba(8,17,39,.88);gap:10px">
+     <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6" fill="none" stroke="#e3bf78" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ucuz lead</div>
+  <div class="a cac" style="top:940px;width:1080px;text-align:center"><span class="caps" style="font-size:26px;color:var(--creamdim)">Satış başı maliyet</span>
+     <div class="num cv" style="font-size:96px;line-height:110px;${d.hero ? '' : 'color:var(--neg)'}">€0</div></div>`;
+  const q = s => [...root.querySelectorAll(s)];
+  const F = { root, d, tiers: q('.tier'), glows: q('.tglow'), ghosts: q('.tghost'), nums: q('.tnum'), vals: q('.v'), chip: q('.fchip')[0], badge: q('.cplb')[0], tag: q('.tag')[0], cac: q('.cac')[0], cv: q('.cv')[0], pc: q('.pc')[0] };
+  F.ctx = F.pc.getContext('2d');
+  const R = mulberry32(d.seed); F.parts = Array.from({ length: 150 }, (_, i) => ({ u: R() * 2 - 1, s: .16 + R() * .09, p: R(), r: 2.6 + R() * 2.6, rank: R(), wob: R() * 6.28 }));
+  return F;
+}
+const halfW = (y) => { // funnel half width at local y
+  for (let i = 0; i < TIERS.length; i++) { const ti = TIERS[i]; if (y < ti.y) return (i ? TIERS[i - 1].wb : ti.wt) / 2; if (y <= ti.y + ti.h) return lerp(ti.wt, ti.wb, (y - ti.y) / ti.h) / 2; }
+  return TIERS[2].wb / 2; };
+function drawParticles(F, t, built, keep, alpha) {
+  const c = F.ctx; c.clearRect(0, 0, 1080, 1000); if (alpha <= 0.01) return;
+  c.globalCompositeOperation = 'lighter';
+  const y0 = TIERS[0].y + 20, y1 = TIERS[2].y + TIERS[2].h - 10;
+  for (const p of F.parts) {
+    const prog = ((p.p + t * p.s) % 1 + 1) % 1, y = lerp(y0, y1, prog);
+    let a = 1;
+    // tier gating: a particle lives into tier k only if its rank is under keep[k] and tier k is built
+    for (let k = 0; k < 3; k++) {
+      const by = TIERS[k].y + (k ? 0 : 0);
+      if (y >= by) { if (p.rank >= keep[k]) a = Math.min(a, k ? clamp(1 - (y - by) / 70) : 0); a *= clamp(built[k]); }
+    }
+    if (a <= 0.01) continue;
+    const hw = halfW(y) - 34, x = 540 + p.u * hw + Math.sin(t * 2 + p.wob) * 6;
+    const g = c.createRadialGradient(x, y, 0, x, y, p.r * 4);
+    g.addColorStop(0, `rgba(255,240,205,${.95 * a * alpha})`); g.addColorStop(.3, `rgba(232,196,125,${.5 * a * alpha})`); g.addColorStop(1, 'rgba(216,179,109,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(x, y, p.r * 4, 0, 6.283); c.fill();
+  }
+  c.globalCompositeOperation = 'source-over';
+}
+const FA = buildFunnel($('fA'), { name: 'A', cpl: 10, vals: [100, 20, 2], keep: [1, .2, .025], cac: 500, seed: 7, hero: false });
+const FB = buildFunnel($('fB'), { name: 'B', cpl: 18, vals: [60, 30, 8], keep: [.6, .3, .085], cac: 135, seed: 11, hero: true });
+FB.tag.innerHTML = FB.tag.innerHTML.replace('Ucuz lead', 'Kaliteli lead');
+
+// ---------- metric cards ----------
+const ICON = {
+  cpl: '<text x="24" y="33" text-anchor="middle" font-family="Tight" font-weight="800" font-size="28" fill="#e3bf78">€</text>',
+  star: '<path d="M24 8 L28.7 18.6 L40 19.6 L31.4 27 L34 38 L24 32.2 L14 38 L16.6 27 L8 19.6 L19.3 18.6 Z" fill="none" stroke="#e3bf78" stroke-width="3" stroke-linejoin="round"/>',
+  conv: '<path d="M9 12 H39 L28 25 V36 L20 40 V25 Z" fill="none" stroke="#e3bf78" stroke-width="3" stroke-linejoin="round"/>',
+  user: '<circle cx="24" cy="17" r="7" fill="none" stroke="#e3bf78" stroke-width="3"/><path d="M11 39 C12 30 18 27 24 27 C30 27 36 30 37 39" fill="none" stroke="#e3bf78" stroke-width="3" stroke-linecap="round"/>',
+  up: '<path d="M8 36 L19 25 L26 31 L40 15 M31 15 H40 V24" fill="none" stroke="#e3bf78" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' };
+const MET = [
+  { k: 'cpl', t: 'CPL', s: 'Lead başı maliyet', v: '€18' },
+  { k: 'star', t: 'Lead Kalitesi', s: 'Nitelikli lead oranı', v: '%50', bar: .5 },
+  { k: 'conv', t: 'Satış Oranı', s: 'Lead → satış', v: '%13', bar: .133 },
+  { k: 'user', t: 'Müşteri Edinme Maliyeti', s: 'Satış başı maliyet', v: '€135' },
+  { k: 'up', t: 'Ciro / ROAS', s: 'Gerçek sonuç', chart: true }];
+const MY = i => 610 + i * 218;
+$('mcards').innerHTML = MET.map((m, i) => `
+  <div class="mc a" style="left:0;top:${MY(i) - 82}px;width:1080px;height:164px">
+    <div class="pill node" style="left:88px;top:46px;width:92px;height:92px;background:#0b1530;border:3px solid rgba(216,179,109,.7);box-shadow:0 0 30px rgba(216,179,109,.25)"><svg width="48" height="48" viewBox="0 0 48 48">${ICON[m.k]}</svg></div>
+    <div class="card body" style="left:214px;top:4px;width:800px;height:174px;border-radius:30px">
+      <div style="position:absolute;left:40px;top:34px;font:700 ${m.t.length > 16 ? 40 : 46}px Tight;letter-spacing:-.025em">${m.t}</div>
+      <div style="position:absolute;left:40px;top:96px;font:500 28px Tight;color:var(--creamdim);letter-spacing:0">${m.s}</div>
+      ${m.v ? `<div class="num gold mv" style="position:absolute;right:40px;top:34px;font-size:84px;line-height:100px">${m.v}</div>` : ''}
+      ${m.bar ? `<div style="position:absolute;left:470px;top:136px;width:290px;height:12px;border-radius:6px;background:rgba(244,236,220,.1)"><div class="mb" style="width:${m.bar * 100}%;height:100%;border-radius:6px;background:linear-gradient(90deg,#b58740,#f4dba2);transform-origin:0 50%"></div></div>` : ''}
+      ${m.chart ? `<div class="chart" style="position:absolute;right:40px;top:28px;width:250px;height:118px">${[.25, .38, .52, .7, 1].map((h, j) => `<div class="cb" style="position:absolute;left:${j * 52}px;bottom:0;width:36px;height:${h * 118}px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#f4dba2,#a97b37);transform-origin:50% 100%"></div>`).join('')}</div>` : ''}
+    </div>
+  </div>`).join('');
+const MC = [...document.querySelectorAll('.mc')];
+
+// ---------- text ----------
+['h1a', 'h1b', 'not1', 'not2', 'hA0', 'hA1', 'hA2', 'hA3', 'hB1', 'hB2', 'cmpT1', 'cmpT2', 'm4cap', 'm4h1', 'm4h2', 'qcap', 'q1', 'q2', 'q3', 'f1', 'f2', 'f3', 'fTag'].forEach(id => wordify($(id).firstElementChild));
+
+// ---------- grain tiles + dust ----------
+const grainTiles = [];
+{ const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); const R = mulberry32(99);
+  for (let k = 0; k < 8; k++) { const im = x.createImageData(256, 256); for (let i = 0; i < im.data.length; i += 4) { const v = R() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; } x.putImageData(im, 0, 0); grainTiles.push(`url(${c.toDataURL()})`); } }
+const DR = mulberry32(5), DUST = Array.from({ length: 70 }, () => ({ x: DR() * 1080, y: DR() * 1920, r: .8 + DR() * 2.2, vx: (DR() - .5) * 14, vy: -6 - DR() * 16, ph: DR() * 6.28, z: .3 + DR() * .7 }));
+const dctx = $('dust').getContext('2d'), fctx = $('fx').getContext('2d');
+function drawDust(t) {
+  dctx.clearRect(0, 0, W, H); dctx.globalCompositeOperation = 'lighter';
+  for (const d of DUST) { const x = ((d.x + d.vx * t) % W + W) % W, y = ((d.y + d.vy * t) % H + H) % H, a = (.25 + .2 * Math.sin(t * 1.3 + d.ph)) * d.z;
+    dctx.fillStyle = `rgba(244,219,162,${a})`; dctx.beginPath(); dctx.arc(x, y, d.r, 0, 6.283); dctx.fill(); }
+}
+// sparkle bursts (deterministic): [time, x, y, count, spread]
+const BURSTS = [[2.32, 783, 944, 18, 220], [5.25, 885, 470, 14, 200], [7.16, 885, 470, 12, 200], [15.55, 800, 820, 22, 260], [16.55, 949, 873, 26, 300], [22.1, 860, 506, 14, 200], [29.3, 540, 1020, 34, 560]];
+function drawFx(t) {
+  fctx.clearRect(0, 0, W, H); fctx.globalCompositeOperation = 'lighter';
+  for (const [t0, cx, cy, n, spr] of BURSTS) {
+    const u = (t - t0) / 1.1; if (u < 0 || u > 1) continue; const R = mulberry32(Math.round(t0 * 100));
+    for (let i = 0; i < n; i++) { const ang = R() * 6.283, dist = spr * (.35 + R() * .65) * E.o5(u), sz = (2 + R() * 4) * (1 - u), x = cx + Math.cos(ang) * dist, y = cy + Math.sin(ang) * dist * .8 - u * 30;
+      const a = (1 - u) * (u < .08 ? u / .08 : 1);
+      fctx.strokeStyle = `rgba(255,236,190,${a})`; fctx.lineWidth = 2; fctx.beginPath();
+      fctx.moveTo(x - sz * 2, y); fctx.lineTo(x + sz * 2, y); fctx.moveTo(x, y - sz * 2); fctx.lineTo(x, y + sz * 2); fctx.stroke();
+      fctx.fillStyle = `rgba(255,244,214,${a})`; fctx.beginPath(); fctx.arc(x, y, sz * .7, 0, 6.283); fctx.fill(); }
+  }
+}
+
+// sparkline of the CPL drop
+const SPK = Array.from({ length: 12 }, (_, i) => { const u = i / 11, R = mulberry32(31 + i); return [60 + u * 700, 30 + E.io(u) * 120 + (i && i < 11 ? (R() - .5) * 26 : 0)]; });
+function sparkPath(k) { // k in [0,1] = portion drawn
+  const n = SPK.length - 1, upto = k * n, pts = [];
+  for (let i = 0; i <= Math.floor(upto); i++) pts.push(SPK[i]);
+  if (upto < n) { const i = Math.floor(upto), f = upto - i; pts.push([lerp(SPK[i][0], SPK[i + 1][0], f), lerp(SPK[i][1], SPK[i + 1][1], f)]); }
+  let d = `M${pts[0][0]} ${pts[0][1]}`; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2; d += ` C${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`; }
+  return { d, end: pts[pts.length - 1], area: d + ` L${pts[pts.length - 1][0]} 190 L${pts[0][0]} 190 Z` };
+}
+const beamBg = (deg, a = 1) => `conic-gradient(from ${deg}deg,rgba(216,179,109,0) 0deg,rgba(216,179,109,0) 250deg,rgba(244,219,162,${a}) 320deg,rgba(255,250,235,${a}) 345deg,rgba(216,179,109,0) 360deg)`;
+
+// ---------- seek ----------
+window.seek = async (t) => {
+  document.documentElement.style.setProperty('--sh', `${(t * 38) % 260}%`);
+  // background
+  const gA = [[540, 700], [520, 640], [760, 560], [620, 700], [300, 620], [540, 800], [540, 900]], keys = [0, 3.8, 11.0, 16.3, 18.0, 24.3, 26.8];
+  let gi = 0; while (gi < keys.length - 1 && t >= keys[gi + 1]) gi++;
+  const gu = gi < keys.length - 1 ? 0 : 1, gn = Math.min(gi + 1, keys.length - 1), gk = gi < keys.length - 1 ? P(t, keys[gi + 1] - .8, .8) : 0;
+  const ga = [lerp(gA[gi][0], gA[gn][0], gk), lerp(gA[gi][1], gA[gn][1], gk)];
+  tf($('glowA'), { x: ga[0] - 700 + Math.sin(t * .5) * 40, y: ga[1] - 700 + Math.cos(t * .4) * 50, s: 1 + .05 * Math.sin(t * .7) });
+  tf($('glowB'), { x: 1080 - ga[0] - 750 + Math.cos(t * .3) * 60, y: 1300 - 750 + Math.sin(t * .45) * 70 });
+  $('grid').style.backgroundPosition = `0 ${(t * 60) % 120}px`;
+  $('grain').style.backgroundImage = grainTiles[Math.floor(t * 24) % 8];
+  drawDust(t); drawFx(t);
+  // camera: slow breathing + bar punches after the drop
+  let z = 1 + .012 * Math.sin(t * .6);
+  if (t > DROP) { const bt = (t - DROP) / (BEAT * 4), ph = (bt - Math.floor(bt)) * BEAT * 4; z += .006 * Math.exp(-ph / .18); }
+  z += .05 * Math.exp(-Math.max(0, t - K.not) / .12) * (t >= K.not ? 1 : 0);   // hit on "Her zaman değil"
+  z += .035 * (t >= K.cmp + .2 ? Math.exp(-(t - K.cmp - .2) / .14) : 0);        // hit on the 4x
+  z += .03 * (t >= K.fBoom ? Math.exp(-(t - K.fBoom) / .16) : 0);
+  $('cam').style.transform = `scale(${z})`;
+  // flash
+  const fl = [[K.not, .35], [K.cmp + .2, .22], [K.fBoom, .3]].reduce((m, [t0, a]) => Math.max(m, t >= t0 ? a * Math.exp(-(t - t0) / .09) : 0), 0);
+  $('flash').style.opacity = fl;
+  S1(t); S23(t); CMP(t); S4(t); SQ(t); SF(t);
+  const note = Math.min(P(t, 4.2, .4), 1 - P(t, 24.2, .3));
+  $('note').style.opacity = note; vis($('note'), note > 0);
+};
+
+function S1(t) {
+  const out = P(t, K.out1, .4, E.in), on = t < K.out1 + .45;
+  vis($('s1'), on); if (!on) return;
+  tf($('s1'), { s: 1 + out * .25, o: 1 - out, b: out * 14 });
+  const dim = P(t, K.not - .05, .25, E.out);
+  rise($('h1a'), t, -.32, null, .07); rise($('h1b'), t, -.12, null, .07);
+  tf($('h1a'), { o: 1 - dim * .75, b: dim * 5, y: -dim * 30 }); tf($('h1b'), { o: 1 - dim * .75, b: dim * 5, y: -dim * 30 });
+  // card in
+  const ci = clamp(sp(t, -.05, 2.0, .78), 0, 1.03);
+  tf($('cplCard'), { y: (1 - ci) * 160 - dim * 20, s: lerp(.9, 1, clamp(ci)) * (1 - dim * .06), o: clamp(ci * 1.6) * (1 - dim * .72), b: dim * 6 });
+  $('cplBeam').style.background = beamBg(t * 140, .9);
+  const v = count(t, K.cnt0, K.cntD, 25, 10, E.io), k = P(t, K.cnt0, K.cntD, E.io);
+  $('cplVal').textContent = '€' + v;
+  const glowV = t > K.chip ? Math.exp(-(t - K.chip) / .5) : 0;
+  $('cplVal').style.textShadow = `0 0 ${20 + 60 * glowV}px rgba(244,219,162,${.25 + .6 * glowV})`;
+  $('cplVal').style.color = glowV > .05 ? `rgb(${lerp(244, 255, glowV)},${lerp(236, 226, glowV)},${lerp(220, 170, glowV)})` : 'var(--cream)';
+  const sp1 = sparkPath(Math.max(.02, k)); $('sparkLine').setAttribute('d', sp1.d); $('sparkArea').setAttribute('d', sp1.area);
+  $('sparkDot').setAttribute('cx', sp1.end[0]); $('sparkDot').setAttribute('cy', sp1.end[1]);
+  const cu = clamp(sp(t, K.chip, 3.0, .55), 0, 1.2), neg = P(t, K.not, .3);
+  tf($('cplChip'), { s: cu, o: clamp(cu * 3), r: (1 - clamp(cu)) * -8 });
+  $('cplChip').style.background = neg > 0 ? `linear-gradient(135deg, rgba(244,219,162,${1 - neg}), rgba(201,154,79,${1 - neg})), linear-gradient(135deg,#e88c7b,#a9483b)` : 'linear-gradient(135deg,#f4dba2,#c99a4f)';
+  // "Her zaman değil."
+  tf($('notDim'), { o: dim });
+  const sl = P(t, K.not - .06, .32, E.out); tf($('slash'), { sx: sl, sy: 1 - P(t, K.not + .25, .3), r: -8, o: sl > 0 ? 1 - P(t, K.not + .25, .3) : 0 });
+  rise($('not1'), t, K.not - .02, null, .07, 2.6); rise($('not2'), t, K.not + .3, null, .07, 2.4);
+  const nb = P(t, K.not + .3, .7, E.out);
+  $('not2').style.filter = `drop-shadow(0 0 ${30 * nb}px rgba(244,219,162,.45))`;
+}
+
+function funnelState(F, t, T) { // T: times {chip, t1, cpl, v1, t2, v2, t3, v3, cac}
+  const d = F.d;
+  const cu = clamp(sp(t, T.chip, 2.8, .7), 0, 1.04); tf(F.chip, { y: (1 - cu) * 40, o: clamp(cu * 2), s: lerp(.85, 1, clamp(cu)) });
+  const built = [T.t1, T.t2, T.t3].map(tb => clamp(sp(t, tb, 2.2, .78), 0, 1.03));
+  const gh = clamp(sp(t, T.chip + .25, 2, .8));
+  F.ghosts.forEach((g, i) => g.setAttribute('opacity', .45 * gh * (1 - clamp(built[i] * 2))));
+  F.tiers.forEach((g, i) => { const u = built[i]; g.style.transformOrigin = `540px ${TIERS[i].y}px`; g.style.transform = `translateY(${(1 - clamp(u)) * -40}px) scale(${lerp(.7, 1, u)},${lerp(.6, 1, u)})`; g.style.opacity = clamp(u * 1.5); });
+  const valsT = [T.v1, T.v2, T.v3], durs = [.75, .6, .35];
+  F.nums.forEach((n, i) => { const u = clamp(sp(t, valsT[i] - .1, 2.6, .72), 0, 1.05); tf(n, { y: (1 - u) * 30, o: clamp(u * 2), s: lerp(.8, 1, u) });
+    F.vals[i].textContent = count(t, valsT[i], durs[i], 0, d.vals[i]); });
+  const bu = clamp(sp(t, T.cpl, 3.0, .55), 0, 1.25); tf(F.badge, { s: bu, o: clamp(bu * 3), r: (1 - clamp(bu)) * 10 });
+  const tg = clamp(sp(t, T.tag, 2.8, .7), 0, 1.04); tf(F.tag, { x: (1 - tg) * -40, o: clamp(tg * 2) });
+  const cc = clamp(sp(t, T.cac, 2.6, .75), 0, 1.04); tf(F.cac, { y: (1 - cc) * 40, o: clamp(cc * 2) });
+  F.cv.textContent = fmt(count(t, T.cac + .05, .6, 0, d.cac));
+  F.glows.forEach((g, i) => g.setAttribute('opacity', (T.glow && T.glow[i] != null ? T.glow[i] : 0)));
+  drawParticles(F, t, built, d.keep, built[0]);
+}
+
+function S23(t) {
+  const onA = t > K.aIn - .1 && t < K.cmp + .7, onB = t > K.bMove && t < K.cmp + .7;
+  vis($('fA'), onA); vis($('fB'), onB);
+  // A: centered big -> left half -> lifts away into the comparison
+  const mv = P(t, K.bMove, .75, E.io), ex = P(t, K.cmp - .32, .38, E.in);
+  if (onA) {
+    const ai = clamp(sp(t, K.aIn, 2.0, .8), 0, 1.02);
+    const s = lerp(1, .5, mv) * lerp(.9, 1, ai), y = lerp(440, 430, mv);
+    // the camera leans toward the sales tier on "Ama sonuç"
+    const lean = P(t, K.aBut, .6) * (1 - mv);
+    const fs = s * (1 + .08 * lean);
+    $('fA').style.transformOrigin = '0 0';
+    tf($('fA'), { x: lerp((1 - fs) * 540, 10, mv), y: y - lean * 60 - ex * 260, s: fs, o: clamp(ai * 1.4) * (1 - ex) * (onA ? 1 : 0) * lerp(1, .82, mv), b: ex * 8 });
+    const dimTop = P(t, K.aSale - .05, .35) * (1 - mv * .7);
+    const glowA = [0, 0, 0];
+    funnelState(FA, t, { chip: K.aIn + .08, t1: K.aChip + .1, cpl: K.aCpl, v1: K.aLead, tag: K.aGreat, t2: K.aQual, v2: K.aQual + .1, t3: K.aBut + .15, v3: K.aSale, cac: K.aCac, glow: glowA });
+    // attention shift to "2 Satış": dim the cheap top, push the 2
+    [0, 1].forEach(i => { FA.tiers[i].style.opacity = clamp(parseFloat(FA.tiers[i].style.opacity)) * (1 - dimTop * .6); FA.nums[i].style.opacity = parseFloat(FA.nums[i].style.opacity) * (1 - dimTop * .55); });
+    FA.badge.style.opacity = parseFloat(FA.badge.style.opacity) * (1 - dimTop * .6); FA.tag.style.opacity = parseFloat(FA.tag.style.opacity) * (1 - dimTop * .8);
+    FA.badge.style.filter = `saturate(${1 - dimTop * .8})`;
+    const hit = t >= K.aSale ? Math.exp(-(t - K.aSale) / .25) : 0;
+    FA.vals[2].style.color = dimTop > 0 ? 'var(--neg)' : 'var(--cream)';
+    FA.vals[2].style.textShadow = `0 0 ${40 * dimTop}px rgba(217,112,95,${.6 * dimTop})`;
+    FA.nums[2].style.transform += ` scale(${1 + .25 * hit + .12 * dimTop * (1 - mv)})`;
+    FA.root.querySelector('.cac').style.transform += '';
+  }
+  if (onB) {
+    const bi = clamp(sp(t, K.bMove + .2, 2.0, .8), 0, 1.02);
+    const s = .5 * lerp(.9, 1, bi);
+    tf($('fB'), { x: 530 + (1 - bi) * 120, y: 430 - ex * 260, s, o: clamp(bi * 1.4) * (1 - ex), b: ex * 8 });
+    const sh = t >= K.bSale ? clamp(sp(t, K.bSale, 2, .6)) : 0;
+    funnelState(FB, t, { chip: K.bChip, t1: K.bChip + .1, cpl: K.bCpl, v1: K.bLead, tag: K.bQual + .3, t2: K.bQual, v2: K.bQual + .1, t3: K.bSale - .25, v3: K.bSale, cac: 99, glow: [0, .5 * sh, sh] });
+    const hit = t >= K.bSale ? Math.exp(-(t - K.bSale) / .3) : 0;
+    FB.nums[2].style.transform += ` scale(${1 + .35 * hit})`;
+    FB.vals[2].style.textShadow = `0 0 ${50 * sh}px rgba(244,219,162,${.7 * sh})`;
+    FB.vals[2].style.color = sh > 0 ? '#ffe7b0' : 'var(--cream)';
+  }
+  const vs = Math.min(P(t, K.bMove + .4, .4), 1 - ex); tf($('vsMark'), { o: vs * .8, s: lerp(.6, 1, vs), y: 230 });
+  // headlines (VO synced)
+  rise($('hA0'), t, K.aCpl - .1, K.aGreat - .45); rise($('hA1'), t, K.aGreat - .05, K.aBut - .4); rise($('hA2'), t, K.aBut, K.aSale - .35);
+  rise($('hA3'), t, K.aSale - .02, K.bMove - .1, .07, 2.6); rise($('hB1'), t, K.bChip + .1, K.bSale - .45); rise($('hB2'), t, K.bSale - .05, K.cmp - .42);
+  // live sales bars under the two funnels
+  const sb = Math.min(clamp(sp(t, K.bMove + .35, 2.2, .8), 0, 1.02), 1 - ex);
+  tf($('sBars'), { y: (1 - sb) * 120 - ex * 200, o: clamp(sb * 1.5) * (1 - ex) });
+  const ba = clamp(sp(t, K.bMove + .5, 1.8, .8), 0, 1.02), bb = clamp(sp(t, K.bSale - .1, 1.5, .78), 0, 1.02);
+  $('sbA').style.transform = `scaleX(${ba})`; $('sbB').style.transform = `scaleX(${Math.max(.0, bb)})`;
+  tf($('sbAv'), { x: 160 + 820 * .25 * ba + 18, o: clamp(ba * 2) });
+  const bvx = 160 + 820 * bb; $('sbBv').textContent = count(t, K.bSale - .1, .6, 0, 8);
+  tf($('sbBv'), { x: bb > .3 ? bvx - 70 : bvx + 18, o: clamp(bb * 4) });
+  $('sbBv').style.color = bb > .3 ? '#0a1228' : 'var(--gold)';
+}
+
+function CMP(t) {
+  const on = t > K.cmp - .2 && t < K.m[0] + .6; vis($('cmp'), on); if (!on) return;
+  const ex = P(t, K.why - .22, .34, E.in);
+  tf($('cmp'), { y: -ex * 120, o: 1 - ex, b: ex * 10 });
+  rise($('cmpT1'), t, K.cmp - .02); rise($('cmpT2'), t, K.cmp + .05, null, .06);
+  const ra = clamp(sp(t, K.cmp - .05, 2.3, .78), 0, 1.03), rb = clamp(sp(t, K.cmp + .08, 2.3, .78), 0, 1.03);
+  tf($('rowA'), { y: (1 - ra) * 220, o: clamp(ra * 1.6) * clamp((t - K.cmp + .05) * 5) });
+  tf($('rowB'), { y: (1 - rb) * 260, o: clamp(rb * 1.6), s: 1 + .02 * clamp(sp(t, K.cmp + .2, 3, .5)) - .02 });
+  $('barA').style.transform = `scaleX(${clamp(sp(t, K.cmp + .15, 1.8, .8), 0, 1.02)})`;
+  $('barB').style.transform = `scaleX(${clamp(sp(t, K.cmp + .25, 1.5, .8), 0, 1.02)})`;
+  $('rowBBeam').style.background = beamBg(t * 160, 1);
+  const x4 = clamp(sp(t, K.cmp + .2, 3.6, .6), 0, 1.3); tf($('x4'), { s: lerp(1.7, 1, x4), o: clamp(x4 * 3), r: (1 - clamp(x4)) * -16 });
+  const cc = clamp(sp(t, K.cmp + .5, 2.3, .78), 0, 1.03); tf($('cacCard'), { y: (1 - cc) * 200, o: clamp(cc * 1.6) });
+  $('cacA').textContent = fmt(count(t, K.cmp + .45, .55, 0, 500));
+  $('cacB').firstElementChild.textContent = fmt(count(t, K.cmp + .6, .55, 0, 135));
+  const pulse = .5 + .5 * Math.sin(t * 6);
+  $('rowBS').style.filter = `drop-shadow(0 0 ${18 + 14 * pulse}px rgba(244,219,162,.55))`;
+}
+
+function S4(t) {
+  const on = t > K.why - .1 && t < K.q + .8; vis($('s4'), on); if (!on) return;
+  const ex = P(t, K.q - .45, .45, E.in);
+  rise($('m4cap'), t, K.why + .1, K.q - .5); rise($('m4h1'), t, K.why + .18, K.start - .35, .05); rise($('m4h2'), t, K.start, K.q - .5, .06);
+  MC.forEach((el, i) => {
+    const u = clamp(sp(t, K.m[i], 2.4, .76), 0, 1.03), o = P(t, K.q - .5 + i * .04, .38, E.in);
+    const focus = P(t, K.start - .05, .4); // CPL highlighted as the start, rest settles back
+    const dimO = i === 0 ? 1 : 1 - focus * .35;
+    tf(el, { x: (1 - u) * 260 - o * 400, o: clamp(u * 1.8) * (1 - o) * dimO, b: o * 6 });
+    const body = el.querySelector('.body');
+    body.style.boxShadow = i === 0 && focus > 0 ? `0 0 ${60 * focus}px rgba(216,179,109,${.45 * focus}), 0 0 0 ${2 * focus}px rgba(244,219,162,${.9 * focus}), 0 40px 90px rgba(0,0,0,.55)` : '';
+    const mb = el.querySelector('.mb'); if (mb) mb.style.transform = `scaleX(${clamp(sp(t, K.m[i] + .25, 1.6, .8), 0, 1.02)})`;
+    el.querySelectorAll('.cb').forEach((b, j) => b.style.transform = `scaleY(${clamp(sp(t, K.m[i] + .2 + j * .08, 2, .7), 0, 1.05)})`);
+    const mv = el.querySelector('.mv'); if (mv) { const vu = clamp(sp(t, K.m[i] + .15, 2.6, .7), 0, 1.06); mv.style.transform = `translateY(${(1 - vu) * 20}px)`; mv.style.opacity = clamp(vu * 2); }
+  });
+  // rail fills as cards land, then a pulse travels CPL -> ROAS (repeating)
+  const fillTo = clamp((t - K.m[0]) / (K.m[4] + .3 - K.m[0])), len = 872;
+  const rf = $('railFill'); rf.setAttribute('stroke-dasharray', `${len}`); rf.setAttribute('stroke-dashoffset', `${len * (1 - E.io(fillTo))}`);
+  $('rail').style.opacity = 1 - ex; vis($('rail'), t > K.m[0] - .1);
+  const pu = t > K.m[4] + .4 ? ((t - K.m[4] - .4) / 1.4) % 1 : -1;
+  $('railPulse').setAttribute('cy', 610 + E.io(clamp(pu)) * 872); $('railPulse').setAttribute('opacity', pu < 0 ? 0 : Math.sin(Math.PI * clamp(pu)) * (1 - ex));
+  const fs = clamp(sp(t, K.start + .1, 2.8, .6), 0, 1.15), fe = clamp(sp(t, K.start + .55, 2.8, .6), 0, 1.15);
+  tf($('flagS'), { s: fs, o: clamp(fs * 3) * (1 - ex) }); tf($('flagE'), { s: fe, o: clamp(fe * 3) * (1 - ex) });
+}
+
+function SQ(t) {
+  const on = t > K.q - .2 && t < K.fin + .6; vis($('sq'), on); if (!on) return;
+  const ex = P(t, K.fin - .03, .32, E.in);
+  tf($('sq'), { s: 1 - ex * .12, o: 1 - ex, b: ex * 10 });
+  rise($('qcap'), t, K.q + .06); rise($('q1'), t, K.q + .22, null, .08); rise($('q2'), t, K.qSat - .08, null, .07, 2.5); rise($('q3'), t, K.qDon - .05, null, .08);
+  const l = clamp(sp(t, K.qLead, 2.4, .75), 0, 1.03), r = clamp(sp(t, K.qSat + .1, 2.8, .6), 0, 1.15);
+  tf($('convL'), { x: (1 - l) * -80, o: clamp(l * 2) }); tf($('convR'), { s: lerp(.6, 1, r), o: clamp(r * 2) });
+  // leads flowing into the sale pill; only a few make it
+  const c = $('convC').getContext('2d'); c.clearRect(0, 0, 1080, 400);
+  if (t > K.qLead + .2) {
+    c.globalCompositeOperation = 'lighter';
+    const R = mulberry32(3);
+    for (let i = 0; i < 26; i++) {
+      const sp0 = .55 + R() * .35, ph = R(), lane = (R() - .5) * 60, keep = R() < .35;
+      const u = ((t - K.qLead) * sp0 + ph) % 1, x = lerp(370, 710, u), y = 200 + lane * Math.sin(Math.PI * u) - (keep ? 0 : u * u * 140 * (R() < .5 ? -1 : 1));
+      const a = (keep ? 1 : 1 - u) * Math.sin(Math.PI * Math.min(1, u * 1.1)) * clamp((t - K.qLead - .2) * 2);
+      const g = c.createRadialGradient(x, y, 0, x, y, 16); g.addColorStop(0, `rgba(255,240,205,${a})`); g.addColorStop(1, 'rgba(216,179,109,0)');
+      c.fillStyle = g; c.beginPath(); c.arc(x, y, 16, 0, 6.283); c.fill();
+    }
+    c.globalCompositeOperation = 'source-over';
+  }
+}
+
+function SF(t) {
+  const on = t > K.fin - .1; vis($('sf'), on); if (!on) return;
+  rise($('f1'), t, K.f1 - .05, null, .08); rise($('f2'), t, K.f2 - .05, null, .1);
+  rise($('f3'), t, K.f3 - .05, null, .12, 2.1);
+  $('strike').style.transform = `scaleX(${P(t, K.strike, .3, E.out)})`;
+  $('f2lead').style.opacity = 1 - .45 * P(t, K.strike + .1, .3);
+  const bo = t >= K.fBoom ? 1 - Math.exp(-(t - K.fBoom) / .3) : 0, hit = t >= K.fBoom ? Math.exp(-(t - K.fBoom) / .2) : 0;
+  $('f3').style.filter = `drop-shadow(0 0 ${20 + 40 * hit + 10 * bo}px rgba(244,219,162,${.35 + .4 * hit}))`;
+  $('f3').firstElementChild.style.transform = `scale(${1 + .06 * hit})`;
+  const ln = P(t, K.fin, .7, E.out); tf($('fLine'), { sx: ln, o: ln * .9 });
+  const tg = P(t, K.fBoom + .2, .5); tf($('fTag'), { o: tg, y: (1 - tg) * 20 });
+  // final micro drift so the hold never freezes
+  const dr = P(t, K.fin, 3.25, u => u); $('sf').style.transform = `scale(${1 + .025 * dr})`;
+}
+
+// ---------- preview controls (rAF clock only here; render never uses it) ----------
+let playing = false, t0w = 0, tcur = 0;
+addEventListener('keydown', e => { if (e.code === 'Space') { playing = !playing; t0w = performance.now() / 1000 - tcur; if (playing) loop(); }
+  if (e.code === 'ArrowRight') seek(tcur = Math.min(T_END, tcur + 1 / 30)); if (e.code === 'ArrowLeft') seek(tcur = Math.max(0, tcur - 1 / 30)); if (e.key === 'r') { tcur = 0; seek(0); } });
+function loop() { if (!playing) return; tcur = performance.now() / 1000 - t0w; if (tcur > T_END) { playing = false; return; } seek(tcur); requestAnimationFrame(loop); }
+Promise.all(['800 100px Tight', '600 30px Tight', 'italic 100px Serif', '100px Serif'].map(f => document.fonts.load(f, 'ğşıİçöüÖÇŞĞÜ€×→')))
+  .then(() => document.fonts.ready).then(() => { seek(0); window.ready = true; });
+</script>
+</body></html>
