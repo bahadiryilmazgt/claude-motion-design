@@ -9,3 +9,15 @@
 - **Budget**: check `GET /v1/user/subscription` (`character_count` / `character_limit`) before long generations. Generate per line or scene, cache the audio under `out/` (git-ignored) and regenerate only the lines that changed.
 - **Licensing**: on the free tier, ElevenLabs output requires attribution and is not licensed for commercial use. Tell the user before delivering a commercial film made on that tier.
 - Mixing stays as in the skill: music ducked ~9 dB under the voice, two-pass loudnorm to -14 LUFS.
+
+## Ev sesi
+
+Bu depodaki tüm seslendirme ve dublaj tek, sabit bir sesle yapılır. Varsayılanlar tek yerde durur: `skill/motion-design/scripts/tts_elevenlabs.py`. Her TTS çağrısı bu betikten geçer. Kullanıcı istemedikçe değiştirme (geçici değişiklik için env: `ELEVENLABS_VOICE_ID`, `ELEVENLABS_MODEL_ID`, `ELEVENLABS_OUTPUT_FORMAT`).
+
+- **Ses**: Atakan, `e9a1KJ0kRpwPORrz92UT` (Türkçe, İstanbul aksanı, kütüphane sesi; API'de ücretli plan gerekir).
+- **Model**: `eleven_v4`. TTS uç noktası modeli reddederse Text to Dialogue API'yi tek input (bu ses) ile kullan; betik bunu kendisi yapar.
+- **Ses ayarı gönderme**: `voice_settings` yok (stability, similarity, style, speed). Ses kendi kayıtlı ayarlarıyla okur. Eski varsayılanlar (`eleven_multilingual_v2`, stability 0.85) düz ve robotik Türkçe üretiyordu; onlara dönme.
+- **Çıktı**: `mp3_44100_128`, `out/` altına (git'e girmez).
+- **Metin**: Seslendirme metnini konuşma diliyle, tam cümlelerle yaz. Ekrandaki slogan parçalarını ("Peki ya mesajlar?" gibi) olduğu gibi okutma; tonlamayı bozar. Ekran metni ile seslendirme metni ayrı tutulur.
+- **Kredi**: Deneme için tek kısa cümle, tek ses. Aynı metni birden çok sesle deneme.
+- **Anahtar**: Betik `ELEVENLABS_API_KEY` varsa onu gönderir, yoksa anahtarı proxy ekler. Anahtarı sohbette isteme. 401/403 alırsan güvenli formu aç (`api.elevenlabs.io`, header `xi-api-key`). 402 `paid_plan_required` anahtar değil plan sorunudur; kullanıcıya söyle.
